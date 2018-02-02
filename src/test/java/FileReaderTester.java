@@ -18,7 +18,7 @@ public class FileReaderTester extends TestCase {
     try {
       // 본인 폴더 경로로 넣어주세용
       _input = new FileReader(
-          "/Users/Hyuk/Documents/devWork/RefactoringJunit/src/main/resources/data.txt");
+          "./src/main/resources/data.txt");
       _empty = newEmptyFile();
 
     } catch (IOException e) {
@@ -27,7 +27,7 @@ public class FileReaderTester extends TestCase {
   }
 
   private FileReader newEmptyFile() throws IOException {
-    File empty = new File("empty.txt");
+    File empty = new File("./src/main/resources/empty.txt");
     FileOutputStream out = new FileOutputStream(empty);
     out.close();
     return new FileReader(empty);
