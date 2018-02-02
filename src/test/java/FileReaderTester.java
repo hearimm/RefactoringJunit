@@ -1,5 +1,7 @@
 
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import junit.framework.Test;
@@ -57,6 +59,14 @@ public class FileReaderTester extends TestCase {
     }
     assertEquals("read last char",'6',_input.read());
     assertEquals("read at end",-1,_input.read());
+  }
+
+  public void testEmptyRead() throws IOException {
+    File empty = new File("empty.txt");
+    FileOutputStream out = new FileOutputStream(empty);
+    out.close();
+    FileReader in = new FileReader(empty);
+    assertEquals(-1,in.read());
   }
 
   public static void main(String[] args) {
