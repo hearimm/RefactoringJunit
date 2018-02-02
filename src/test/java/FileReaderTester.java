@@ -49,15 +49,8 @@ public class FileReaderTester extends TestCase {
     assertEquals("read at end",-1,_input.read());
   }
 
-  public static Test suite() {
-    TestSuite suite = new TestSuite();
-    suite.addTest(new FileReaderTester("testRead"));
-    suite.addTest(new FileReaderTester("testReadAtEnd"));
-    return suite;
-  }
-
   public static void main(String[] args) {
-    junit.textui.TestRunner.run(suite());
+    junit.textui.TestRunner.run(new TestSuite(FileReaderTester.class));
   }
 }
 
