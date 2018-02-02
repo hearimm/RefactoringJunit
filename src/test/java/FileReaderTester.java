@@ -11,9 +11,12 @@ public class FileReaderTester extends TestCase {
     super(name);
   }
 
-  protected void setup() {
+  protected void setUp() {
     try {
-      _input = new FileReader("data.txt");
+      // 본인 폴더 경로로 넣어주세용
+      _input = new FileReader(
+          "/Users/Hyuk/Documents/devWork/RefactoringJunit/src/main/resources/data.txt");
+
     } catch (FileNotFoundException e) {
       throw new RuntimeException("테스트 파일을 열 수 없음");
     }
@@ -25,6 +28,14 @@ public class FileReaderTester extends TestCase {
     } catch (IOException e) {
       throw new RuntimeException("테스트 파일을 닫는 중 에러 발생");
     }
+  }
+
+  public void testRead() throws IOException {
+    char ch = '&';
+    for (int i = 0; i < 4; i++) {
+      ch = (char) _input.read();
+    }
+    assert ('d' == ch);
   }
 
 }
