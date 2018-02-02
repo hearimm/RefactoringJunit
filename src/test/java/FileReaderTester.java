@@ -46,7 +46,7 @@ public class FileReaderTester extends TestCase {
     for (int i = 0; i < 4; i++) {
       ch = (char) _input.read();
     }
-    assertEquals('d',ch);
+    assertEquals('d', ch);
   }
 
   public void testReadAtEnd() throws IOException {
@@ -54,21 +54,31 @@ public class FileReaderTester extends TestCase {
     for (int i = 0; i < 141; i++) {
       ch = _input.read();
     }
-    assertEquals("read at end",-1,_input.read());
+    assertEquals("read at end", -1, _input.read());
   }
 
   public void testReadBoundaries() throws IOException {
-    assertEquals("read first char", 'B',_input.read());
+    assertEquals("read first char", 'B', _input.read());
     int ch;
     for (int i = 0; i < 135; i++) {
       ch = _input.read();
     }
-    assertEquals("read last char",'6',_input.read());
-    assertEquals("read at end",-1,_input.read());
+    assertEquals("read last char", '6', _input.read());
+    assertEquals("read at end", -1, _input.read());
+    assertEquals("read past end", -1, _input.read());
   }
 
   public void testEmptyRead() throws IOException {
-    assertEquals(-1,_empty.read());
+    assertEquals(-1, _empty.read());
+  }
+
+  public void testReadAfterClose() throws IOException {
+    _input.close();
+    try {
+      _input.read();
+      fail("read past end에 예외가 발생하지 않음");
+    } catch (IOException io) {
+    }
   }
 
   public static void main(String[] args) {
