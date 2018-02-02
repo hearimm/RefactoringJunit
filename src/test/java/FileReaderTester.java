@@ -1,7 +1,9 @@
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import junit.framework.Test;
 import junit.framework.TestCase;
+import junit.framework.TestSuite;
 
 public class FileReaderTester extends TestCase {
 
@@ -38,5 +40,14 @@ public class FileReaderTester extends TestCase {
     assert ('d' == ch);
   }
 
+  public static Test suite() {
+    TestSuite suite = new TestSuite();
+    suite.addTest(new FileReaderTester("testRead"));
+    return suite;
+  }
+
+  public static void main(String[] args) {
+    junit.textui.TestRunner.run(suite());
+  }
 }
 
