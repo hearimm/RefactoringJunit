@@ -1,3 +1,4 @@
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -37,12 +38,21 @@ public class FileReaderTester extends TestCase {
     for (int i = 0; i < 4; i++) {
       ch = (char) _input.read();
     }
-    assert ('d' == ch);
+    assertEquals('d',ch);
+  }
+
+  public void testReadAtEnd() throws IOException {
+    int ch = -1234;
+    for (int i = 0; i < 141; i++) {
+      ch = _input.read();
+    }
+    assertEquals("read at end",-1,_input.read());
   }
 
   public static Test suite() {
     TestSuite suite = new TestSuite();
     suite.addTest(new FileReaderTester("testRead"));
+    suite.addTest(new FileReaderTester("testReadAtEnd"));
     return suite;
   }
 
